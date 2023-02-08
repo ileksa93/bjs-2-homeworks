@@ -1,7 +1,16 @@
 function compareArrays(arr1, arr2) {
-    const compareArrays = (arr1, arr2) => arr1.length === arr2.length && arr1.every((n, i) => n === arr2[i]);
+    for (let i = 0; i < arr1.length; i++);
+    
+    if (arr1[i] !== arr2[i]){
+ 
+    return false;
+    } else{
+    return true;
+    }
+}
+ 
 }
 
 function getUsersNamesInAgeRange(users, gender) {
   
-}
+}  
