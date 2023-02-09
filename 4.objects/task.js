@@ -19,37 +19,22 @@ function Student(name, gender, age) {
   };
   
   Student.prototype.getAverage = function() {
-    let totalMarks = 0;
-    if (this.marks.length === 0) {
-      return 0;
-    } else {
-      for (let i = 0; i < this.marks.length; i++) {
-        totalMarks += this.marks[i];
+    if (!this.marks || this.marks.length === 0) {
+        return 0;
       }
-      return totalMarks / this.marks.length;
+  
+      let sum = 0;
+      for (let i = 0; i < this.marks.length; i++) {
+        sum += this.marks[i];
+      }
+      return sum / this.marks.length;
     }
   };
   
-  Student.prototype.expel = function() {
-    this.subject = null;
-    this.marks = null;
-  };
+  Student.prototype.exclude = function(reason) {
+    delete this.subject;
+    delete this.marks;
+    this.excluded = reason;
+  }
   
-  const student1 = new Student("John", "Male", 22);
-  const student2 = new Student("Jane", "Female", 21);
-  const student3 = new Student("Jim", "Male", 23);
-  
-  student1.setSubject("Mathematics");
-  student2.setSubject("Physics");
-  student3.setSubject("Chemistry");
-  
-  student1.addMarks(80, 90, 95);
-  student2.addMarks(85, 95, 90);
-  student3.addMarks(75, 80, 85);
-  
-  console.log("Average marks of John: ", student1.getAverage());
-  console.log("Average marks of Jane: ", student2.getAverage());
-  console.log("Average marks of Jim: ", student3.getAverage());
-  
-  student1.expel();
-  student1.addMarks(80, 90, 95);
+ 
