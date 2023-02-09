@@ -28,8 +28,7 @@ function Student(name, gender, age) {
         sum += this.marks[i];
       }
       return sum / this.marks.length;
-    }
-  };
+    };
   
   Student.prototype.exclude = function(reason) {
     delete this.subject;
