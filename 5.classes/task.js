@@ -57,3 +57,42 @@ class PrintEditionItem {
                 this.type = "detective";
                 }
                 }
+// 2 дз
+                class Library {
+                    constructor(name) {
+                      this.name = name;
+                      this.books = [];
+                    }
+                    
+  addBook(book) {
+    if (book.state > 30) {
+      this.books.push(book);
+    }
+  }
+  findBookBy(type, value) {
+    for (const book of this.books) {
+      if (book[type] === value) {
+        return book;
+      }
+    }
+    return null;
+  }
+  giveBookByName(bookName) {
+    const book = this.findBookBy('name', bookName);
+    if (book) {
+      this.books = this.books.filter(b => b !== book);
+      return book;
+    }
+    return null;
+  }
+}
+const library = new Library('My Library');
+library.addBook({ name: 'The Great Gatsby', author: 'F. Scott Fitzgerald', state: 35 });
+library.addBook({ name: 'To Kill a Mockingbird', author: 'Harper Lee', state: 40 });
+
+const gatsby = library.findBookBy('name', 'The Great Gatsby');
+console.log(gatsby);
+
+
+const mockingbird = library.giveBookByName('To Kill a Mockingbird');
+console.log(mockingbird);
