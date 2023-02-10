@@ -96,3 +96,45 @@ console.log(gatsby);
 
 const mockingbird = library.giveBookByName('To Kill a Mockingbird');
 console.log(mockingbird);
+
+
+//3 zad
+class Student {
+    constructor(name) {
+        this.name = name;
+        this.marks = {};
+    }
+
+    addMark(subject, mark) {
+        if (mark < 2 || mark > 5) {
+            return;
+        }
+
+        if (!this.marks[subject]) {
+            this.marks[subject] = [];
+        }
+
+        this.marks[subject].push(mark);
+    }
+
+    getAverageBySubject(subject) {
+        if (!this.marks[subject]) return 0;
+    
+        const sum = this.marks[subject].reduce((acc, mark) => acc + mark, 0);
+        return sum / this.marks[subject].length;
+      }
+    
+      getAverage() {
+        if (!Object.keys(this.marks).length) return 0;
+    
+        let sum = 0;
+        let totalMarks = 0;
+    
+        for (const subject in this.marks) {
+          sum += this.marks[subject].reduce((acc, mark) => acc + mark, 0);
+          totalMarks += this.marks[subject].length;
+        }
+    
+        return sum / totalMarks;
+      }
+    }
