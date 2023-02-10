@@ -7,17 +7,53 @@ class PrintEditionItem {
         this.type = null;
     }
     fix() {
-        if (this.state < 100) {
-            this.state *= 1.5;
+        this.state *= 1.5;
+        if (this.state > 100) {
+          this.state = 100;
         }
-    }
-    set state(value) {
-        if (value <= 0 || value >= 100) {
-            console.log("Invalid value for state, it must be between 0 and 100");
+      }
+      set state(value) {
+        if (value < 0) {
+          this._state = 0;
+        } else if (value > 100) {
+          this._state = 100;
         } else {
-            this._state = value;
+          this._state = value;
         }
-    }
-    get state() {
+      }
+      
+      get state() {
         return this._state;
+      }
     }
+    class Magazine extends PrintEditionItem {
+        constructor(name, releaseDate, pagesCount) {
+          super(name, releaseDate, pagesCount);
+          this.type = "magazine";
+        }
+      }
+      class Book extends PrintEditionItem {
+        constructor(name, releaseDate, pagesCount, author) {
+        super(name, releaseDate, pagesCount);
+        this.author = author;
+        this.type = "book";
+        }
+        }
+        class NovelBook extends Book {
+            constructor(name, releaseDate, pagesCount, author) {
+            super(name, releaseDate, pagesCount, author);
+            this.type = "novel";
+            }
+            }
+            class FantasticBook extends Book {
+                constructor(name, releaseDate, pagesCount, author) {
+                super(name, releaseDate, pagesCount, author);
+                this.type = "fantastic";
+                }
+            }
+            class DetectiveBook extends Book {
+                constructor(name, releaseDate, pagesCount, author) {
+                super(name, releaseDate, pagesCount, author);
+                this.type = "detective";
+                }
+                }
